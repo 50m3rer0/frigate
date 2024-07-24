@@ -18,8 +18,8 @@ First, you will want to configure go2rtc to connect to your camera stream by add
 ```yaml
 go2rtc:
   streams:
-    back:
-      - rtsp://user:password@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2
+    dummy_camera: # <--- replace with the name of your camera
+      - rtsp://user:password@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2  # <--- replace with your camera's information
 ```
 
 The easiest live view to get working is MSE. After adding this to the config, restart Frigate and try to watch the live stream by selecting MSE in the dropdown after clicking on the camera.
@@ -31,8 +31,8 @@ If you are unable to see your video feed, first check the go2rtc logs in the Fri
 ```yaml
 go2rtc:
   streams:
-    back:
-      - rtsp://user:password@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2
+    dummy_camera: # <--- replace with the name of your camera
+      - rtsp://user:password@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2 # <--- replace with your camera's information
       - "ffmpeg:back#video=h264"
 ```
 
@@ -41,8 +41,8 @@ Some camera streams may need to use the ffmpeg module in go2rtc. This has the do
 ```yaml
 go2rtc:
   streams:
-    back:
-      - ffmpeg:rtsp://user:password@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2
+    dummy_camera: # <--- replace with the name of your camera
+      - ffmpeg:rtsp://user:password@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2 # <--- replace with your camera's information
 ```
 
 If you can see the video but do not have audio, this is most likely because your camera's audio stream is not AAC. If possible, update your camera's audio settings to AAC. If your cameras do not support AAC audio, you will need to tell go2rtc to re-encode the audio to AAC on demand if you want audio. This will use additional CPU and add some latency. To add AAC audio on demand, you can update your go2rtc config as follows:
@@ -50,8 +50,8 @@ If you can see the video but do not have audio, this is most likely because your
 ```yaml
 go2rtc:
   streams:
-    back:
-      - rtsp://user:password@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2
+    dummy_camera: # <--- replace with the name of your camera
+      - rtsp://user:password@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2 # <--- replace with your camera's information
       - "ffmpeg:back#audio=aac"
 ```
 
@@ -60,8 +60,8 @@ If you need to convert **both** the audio and video streams, you can use the fol
 ```yaml
 go2rtc:
   streams:
-    back:
-      - rtsp://user:password@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2
+    dummy_camera: # <--- replace with the name of your camera
+      - rtsp://user:password@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2 # <--- replace with your camera's information
       - "ffmpeg:back#video=h264#audio=aac"
 ```
 
@@ -70,8 +70,8 @@ When using the ffmpeg module, you would add AAC audio like this:
 ```yaml
 go2rtc:
   streams:
-    back:
-      - "ffmpeg:rtsp://user:password@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2#video=copy#audio=copy#audio=aac"
+    dummy_camera: # <--- replace with the name of your camera
+      - "ffmpeg:rtsp://user:password@10.0.10.10:554/cam/realmonitor?channel=1&subtype=2#video=copy#audio=copy#audio=aac" # <--- replace with your camera's information
 ```
 
 :::caution
